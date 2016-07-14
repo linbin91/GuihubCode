@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.felink.guihubcode.MainActivity">
+    tools:context=".RecyclerView.RecyclerActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -11,23 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/tv_marquee"
+            android:id="@+id/tv_recycler_click"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#666666"
-            android:text="mMarqueeLayout" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#FF4081"/>
-        <TextView
-            android:id="@+id/tv_recycler"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#666666"
-            android:text="RecyclerView" />
+            android:text="RecyclerView 点击" />
     </LinearLayout>
 
 </ScrollView>

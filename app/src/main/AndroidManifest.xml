@@ -16,6 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MarqueeActivity"/>
+        <activity android:name=".RecyclerView.RecyclerActivity"/>
+        <activity android:name=".RecyclerView.RecyclerClickActivity"/>
     </application>
 
 </manifest>
