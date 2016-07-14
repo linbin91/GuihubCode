@@ -18,6 +18,8 @@
         <activity android:name=".MarqueeActivity"/>
         <activity android:name=".RecyclerView.RecyclerActivity"/>
         <activity android:name=".RecyclerView.RecyclerClickActivity"/>
+        <activity android:name=".RecyclerView.HeaderAndFooterActivity"/>
+        <activity android:name=".RecyclerView.MoreRecyclerActivity"/>
     </application>
 
 </manifest>

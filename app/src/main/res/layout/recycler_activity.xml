@@ -17,6 +17,28 @@
             android:layout_height="40dp"
             android:background="#666666"
             android:text="RecyclerView 点击" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF4081"/>
+        <TextView
+            android:id="@+id/tv_recycler_header"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#666666"
+            android:gravity="center"
+            android:text="RecyclerView 加入头部尾部" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF4081"/>
+        <TextView
+            android:id="@+id/tv_recycler_add_more"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#666666"
+            android:gravity="center"
+            android:text="RecyclerView ADD MORE DATA" />
     </LinearLayout>
 
 </ScrollView>
