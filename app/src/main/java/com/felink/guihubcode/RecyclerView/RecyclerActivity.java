@@ -21,6 +21,8 @@ public class RecyclerActivity extends Activity implements View.OnClickListener {
     TextView tvRecyclerHeader;
     @InjectView(R.id.tv_recycler_add_more)
     TextView tvRecyclerAddMore;
+    @InjectView(R.id.tv_recycler_all)
+    TextView tvRecyclerAll;
     private TextView tvRecyclerClick;
 
     @Override
@@ -32,6 +34,7 @@ public class RecyclerActivity extends Activity implements View.OnClickListener {
         tvRecyclerClick.setOnClickListener(this);
         tvRecyclerHeader.setOnClickListener(this);
         tvRecyclerAddMore.setOnClickListener(this);
+        tvRecyclerAll.setOnClickListener(this);
     }
 
     @Override
@@ -45,6 +48,9 @@ public class RecyclerActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.tv_recycler_add_more:
                 toRecyclerMoreActivity();
+                break;
+            case R.id.tv_recycler_all:
+                toRecyclerAll();
             default:
                 break;
 
@@ -52,8 +58,16 @@ public class RecyclerActivity extends Activity implements View.OnClickListener {
     }
 
     /**
+     * 网络集合了头部与加更多的
+     */
+    private void toRecyclerAll() {
+
+        Intent intent = new Intent(RecyclerActivity.this, AllRecyclerActivity.class);
+        startActivity(intent);
+    }
+
+    /**
      * 进入底部有更多的recyclerview
-     *
      */
     private void toRecyclerMoreActivity() {
         Intent intent = new Intent(RecyclerActivity.this, MoreRecyclerActivity.class);

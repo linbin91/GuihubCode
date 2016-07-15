@@ -20,6 +20,19 @@
         <activity android:name=".RecyclerView.RecyclerClickActivity"/>
         <activity android:name=".RecyclerView.HeaderAndFooterActivity"/>
         <activity android:name=".RecyclerView.MoreRecyclerActivity"/>
+        <activity android:name=".RecyclerView.AllRecyclerActivity"/>
+        <activity android:name=".RecyclerView.CollapsingToolbarLayoutActivity"
+            android:theme="@style/SupportTheme"/>
+        <activity android:name=".RecyclerView.EmptyViewActivity"
+            android:theme="@style/SupportTheme"/>
+        <activity android:name=".RecyclerView.GridActivity"
+            android:theme="@style/SupportTheme"/>
+        <activity android:name=".RecyclerView.LinearActivity"
+            android:theme="@style/SupportTheme"/>
+        <activity android:name=".RecyclerView.MultiHeaderActivity"
+            android:theme="@style/SupportTheme"/>
+        <activity android:name=".RecyclerView.StaggeredGridActivity"
+            android:theme="@style/SupportTheme"/>
     </application>
 
 </manifest>

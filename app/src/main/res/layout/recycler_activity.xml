@@ -39,6 +39,19 @@
             android:background="#666666"
             android:gravity="center"
             android:text="RecyclerView ADD MORE DATA" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF4081"/>
+
+        <TextView
+            android:id="@+id/tv_recycler_all"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#666666"
+            android:gravity="center"
+            android:text="网络上的刷新加载更多" />
     </LinearLayout>
 
 </ScrollView>
