@@ -33,6 +33,8 @@
             android:theme="@style/SupportTheme"/>
         <activity android:name=".RecyclerView.StaggeredGridActivity"
             android:theme="@style/SupportTheme"/>
+        <activity android:name=".RecyclerView.DeleteItemRecyclerActivity"
+            android:theme="@style/SupportTheme"/>
     </application>
 
 </manifest>

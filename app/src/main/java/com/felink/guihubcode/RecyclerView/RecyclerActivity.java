@@ -23,6 +23,8 @@ public class RecyclerActivity extends Activity implements View.OnClickListener {
     TextView tvRecyclerAddMore;
     @InjectView(R.id.tv_recycler_all)
     TextView tvRecyclerAll;
+    @InjectView(R.id.tv_recycler_delete)
+    TextView tvRecyclerDelete;
     private TextView tvRecyclerClick;
 
     @Override
@@ -35,6 +37,7 @@ public class RecyclerActivity extends Activity implements View.OnClickListener {
         tvRecyclerHeader.setOnClickListener(this);
         tvRecyclerAddMore.setOnClickListener(this);
         tvRecyclerAll.setOnClickListener(this);
+        tvRecyclerDelete.setOnClickListener(this);
     }
 
     @Override
@@ -51,10 +54,21 @@ public class RecyclerActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.tv_recycler_all:
                 toRecyclerAll();
+                break;
+            case R.id.tv_recycler_delete:
+                toRecyclerDelete();
             default:
                 break;
 
         }
+    }
+
+    /**
+     * 进入删除item的界面
+     */
+    private void toRecyclerDelete() {
+        Intent intent = new Intent(RecyclerActivity.this, DeleteItemRecyclerActivity.class);
+        startActivity(intent);
     }
 
     /**
