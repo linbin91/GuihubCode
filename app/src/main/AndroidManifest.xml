@@ -34,6 +34,9 @@
         <activity android:name=".RecyclerView.StaggeredGridActivity"
             android:theme="@style/SupportTheme"/>
         <activity android:name=".RecyclerView.DeleteItemRecyclerActivity"
+            android:theme="@style/SupportTheme"/><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <activity android:name=".RecyclerView.DeleteItemRecyclerActivity2"
             android:theme="@style/SupportTheme"/>
     </application>
 

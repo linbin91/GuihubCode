@@ -65,6 +65,18 @@
             android:background="#666666"
             android:gravity="center"
             android:text="删除item" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF4081"/>
+
+        <TextView
+            android:id="@+id/tv_recycler_other_delete"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#666666"
+            android:gravity="center"
+            android:text="删除item另一种方法" />
     </LinearLayout>
 
 </ScrollView>

@@ -21,8 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
-import com.felink.guihubcode.R;
-import com.felink.guihubcode.holder.MyViewHolder;
 import com.jcodecraeer.xrecyclerview.AppBarStateChangeListener;
 import com.jcodecraeer.xrecyclerview.ArrowRefreshHeader;
 import com.jcodecraeer.xrecyclerview.LoadingMoreFooter;
@@ -34,7 +32,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/17.
  */
-public class DeleteRecyclerView extends RecyclerView {
+public class DeleteRecyclerViewOther extends RecyclerView {
 
     private boolean isLoadingData = false;
     private boolean isNoMore = false;
@@ -57,7 +55,7 @@ public class DeleteRecyclerView extends RecyclerView {
     //adapter没有数据的时候显示,类似于listView的emptyView
     private View mEmptyView;
     private View mFootView;
-    private final RecyclerView.AdapterDataObserver mDataObserver = new DataObserver();
+    private final AdapterDataObserver mDataObserver = new DataObserver();
     private AppBarStateChangeListener.State appbarState = AppBarStateChangeListener.State.EXPANDED;
 
 
@@ -74,18 +72,19 @@ public class DeleteRecyclerView extends RecyclerView {
     private TextView textView;
     private ImageView imageView;
     private boolean isFirst = true;
+    private SlideView mFocusedItemView;
 
 
-    public DeleteRecyclerView(Context context) {
+    public DeleteRecyclerViewOther(Context context) {
         super(context);
     }
 
-    public DeleteRecyclerView(Context context, @Nullable AttributeSet attrs) {
+    public DeleteRecyclerViewOther(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public DeleteRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public DeleteRecyclerViewOther(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context);
     }
@@ -254,51 +253,39 @@ public class DeleteRecyclerView extends RecyclerView {
     }
 
     private  boolean isShow = false;
+
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        int x = (int) ev.getX();
-        int y = (int) ev.getY();
-
         if (mLastY == -1) {
             mLastY = ev.getRawY();
         }
+        int x = (int) ev.getX();
+        int y = (int) ev.getY();
+
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if (!mScroller.isFinished()){
-                    mScroller.abortAnimation();
-                }
-                if (mLastItemLayout != null && mLastItemLayout.getScrollX() > 0){
-                    mScroller.startScroll(mLastItemLayout.getScrollX(),0, 0 - mLastItemLayout.getScrollX(),0);
-                    invalidate();
-                }
                 mLastY = ev.getRawY();
-                xDown = x;
-                yDown = y;
+
                 //通过点击的坐标计算当前的position
                 int mFirstPosition = ((LinearLayoutManager) getLayoutManager()).findFirstVisibleItemPosition();
-                int headerCount = mHeaderViews.size();
-                mFirstPosition = mFirstPosition + headerCount;
                 Rect frame = mTouchFrame;
-                if (frame == null){
+                if (frame == null) {
                     mTouchFrame = new Rect();
                     frame = mTouchFrame;
                 }
                 int count = getChildCount();
-                for (int i = count -1; i >= 0; i--){
-                    View child = getChildAt(i);
-                    if (child.getVisibility() == View.VISIBLE){
+                for (int i = count - 1; i >= 0; i--) {
+                    final View child = getChildAt(i);
+                    if (child.getVisibility() == View.VISIBLE) {
                         child.getHitRect(frame);
-                        if (frame.contains(x,y)){
+                        if (frame.contains(x, y)) {
                             pos = mFirstPosition + i;
                         }
                     }
                 }
-                View view = getChildAt(pos - mFirstPosition);
-                MyViewHolder viewHolder = (MyViewHolder) getChildViewHolder(view);
-                itemLayout = viewHolder.layout;
-                textView = (TextView) itemLayout.findViewById(R.id.item_delete_txt);
-                imageView = (ImageView) itemLayout.findViewById(R.id.item_delete_img);
-                mLastItemLayout = itemLayout;
+                mFocusedItemView = (SlideView) getChildAt(pos - mFirstPosition);
+
+
                 break;
             case MotionEvent.ACTION_MOVE:
                 final float deltaY = ev.getRawY() - mLastY;
@@ -309,58 +296,8 @@ public class DeleteRecyclerView extends RecyclerView {
                         return false;
                     }
                 }
-                int delX = x - mStartX;
-                int delY = y - mStartY;
-                if (!(Math.abs(delX) < Math.abs(delY) * TAN)){
-                    int scrollX = itemLayout.getScrollX();
-                    int newScrollX = scrollX -delX;
-                    if (delX != 0){
-                        if (newScrollX < 0){
-                            newScrollX = 0;
-                        }else if (newScrollX > textView.getWidth()){
-                            newScrollX = textView.getWidth();
-                        }
-                        itemLayout.scrollTo(newScrollX,0);
-                    }
-                }
-//                xMove = x;
-//                yMove = y;
-//                int dx = xMove - xDown;
-//                int dy = yMove - yDown;
-//
-//                if (Math.abs(dy) < mTouchSlop * 2 && Math.abs(dx) > mTouchSlop) {
-//                    int scrollX = itemLayout.getScrollX();
-//                    int newScrollX = mStartX - x;
-//                    if (newScrollX < 0 && scrollX <= 0) {
-//                        newScrollX = 0;
-//                    } else if (newScrollX > 0 && scrollX >= maxLength) {
-//                        newScrollX = 0;
-//                    }
-//                    if (scrollX > maxLength / 2) {
-//                        textView.setVisibility(GONE);
-//                        imageView.setVisibility(VISIBLE);
-//
-//
-//                        if (isFirst) {
-//                            ObjectAnimator animatorX = ObjectAnimator.ofFloat(imageView, "scaleX", 1f, 1.2f, 1f);
-//                            ObjectAnimator animatorY = ObjectAnimator.ofFloat(imageView, "scaleY", 1f, 1.2f, 1f);
-//                            AnimatorSet animSet = new AnimatorSet();
-//                            animSet.play(animatorX).with(animatorY);
-//                            animSet.setDuration(800);
-//                            animSet.start();
-//                            isFirst = false;
-//                        }
-//
-//
-//                    } else {
-//                        textView.setVisibility(VISIBLE);
-//                        imageView.setVisibility(GONE);
-//                    }
-//                    isShow = true;
-//                    itemLayout.scrollBy(newScrollX, 0);
-//                }
                 break;
-            case  MotionEvent.ACTION_UP:
+            default:
                 mLastY = -1; // reset
                 if (isOnTop() && pullRefreshEnabled && appbarState == AppBarStateChangeListener.State.EXPANDED) {
                     if (mRefreshHeader.releaseAction()) {
@@ -370,26 +307,12 @@ public class DeleteRecyclerView extends RecyclerView {
                     }
                 }
 
-//                int scrollX = itemLayout.getScrollX();
-//                if (scrollX > maxLength / 2) {
-//                    ((WrapAdapter) getAdapter()).removeRecycle(pos);
-//                } else {
-//                    mScroller.startScroll(scrollX, 0, -scrollX, 0);
-//                    invalidate();
-//                }
-//                isFirst = true;
-//                isShow = false;
-                int newScrollX = 0;
-                int scrollX = itemLayout.getScrollX();
-                if (scrollX - textView.getWidth() * 0.75 > 0) {
-                    newScrollX = textView.getWidth() ;
-                }
-                mScroller.startScroll(scrollX, 0, newScrollX - scrollX, 0);
-                invalidate();
                 break;
+
         }
-        mStartX = x;
-        mStartY = y;
+        if (mFocusedItemView != null){
+            mFocusedItemView.onRequireTouchEvent(ev);
+        }
         return super.onTouchEvent(ev);
     }
 
@@ -418,7 +341,7 @@ public class DeleteRecyclerView extends RecyclerView {
         }
     }
 
-    private class DataObserver extends RecyclerView.AdapterDataObserver {
+    private class DataObserver extends AdapterDataObserver {
         @Override
         public void onChanged() {
             Adapter<?> adapter = getAdapter();
@@ -432,10 +355,10 @@ public class DeleteRecyclerView extends RecyclerView {
                 }
                 if (adapter.getItemCount() == emptyCount) {
                     mEmptyView.setVisibility(View.VISIBLE);
-                    DeleteRecyclerView.this.setVisibility(View.GONE);
+                    DeleteRecyclerViewOther.this.setVisibility(View.GONE);
                 } else {
                     mEmptyView.setVisibility(View.GONE);
-                    DeleteRecyclerView.this.setVisibility(View.VISIBLE);
+                    DeleteRecyclerViewOther.this.setVisibility(View.VISIBLE);
                 }
             }
             if (mWrapAdapter != null) {
@@ -469,11 +392,11 @@ public class DeleteRecyclerView extends RecyclerView {
         }
     };
 
-    public class WrapAdapter extends RecyclerView.Adapter<ViewHolder> {
+    public class WrapAdapter extends Adapter<ViewHolder> {
 
-        private RecyclerView.Adapter adapter;
+        private Adapter adapter;
 
-        public WrapAdapter(RecyclerView.Adapter adapter) {
+        public WrapAdapter(Adapter adapter) {
             this.adapter = adapter;
         }
 
@@ -498,7 +421,7 @@ public class DeleteRecyclerView extends RecyclerView {
         }
 
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             if (viewType == TYPE_REFRESH_HEADER) {
                 return new SimpleViewHolder(mRefreshHeader);
             } else if (isHeaderType(viewType)) {
@@ -510,7 +433,7 @@ public class DeleteRecyclerView extends RecyclerView {
         }
 
         @Override
-        public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, int position) {
             if (isHeader(position) || isRefreshHeader(position)) {
                 return;
             }
@@ -583,7 +506,7 @@ public class DeleteRecyclerView extends RecyclerView {
         @Override
         public void onAttachedToRecyclerView(RecyclerView recyclerView) {
             super.onAttachedToRecyclerView(recyclerView);
-            RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
+            LayoutManager manager = recyclerView.getLayoutManager();
             if (manager instanceof GridLayoutManager) {
                 final GridLayoutManager gridManager = ((GridLayoutManager) manager);
                 gridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -603,7 +526,7 @@ public class DeleteRecyclerView extends RecyclerView {
         }
 
         @Override
-        public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+        public void onViewAttachedToWindow(ViewHolder holder) {
             super.onViewAttachedToWindow(holder);
             ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
             if (lp != null
@@ -616,17 +539,17 @@ public class DeleteRecyclerView extends RecyclerView {
         }
 
         @Override
-        public void onViewDetachedFromWindow(RecyclerView.ViewHolder holder) {
+        public void onViewDetachedFromWindow(ViewHolder holder) {
             adapter.onViewDetachedFromWindow(holder);
         }
 
         @Override
-        public void onViewRecycled(RecyclerView.ViewHolder holder) {
+        public void onViewRecycled(ViewHolder holder) {
             adapter.onViewRecycled(holder);
         }
 
         @Override
-        public boolean onFailedToRecycleView(RecyclerView.ViewHolder holder) {
+        public boolean onFailedToRecycleView(ViewHolder holder) {
             return adapter.onFailedToRecycleView(holder);
         }
 
@@ -640,7 +563,7 @@ public class DeleteRecyclerView extends RecyclerView {
             adapter.registerAdapterDataObserver(observer);
         }
 
-        private class SimpleViewHolder extends RecyclerView.ViewHolder {
+        private class SimpleViewHolder extends ViewHolder {
             public SimpleViewHolder(View itemView) {
                 super(itemView);
             }

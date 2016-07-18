@@ -25,6 +25,8 @@ public class RecyclerActivity extends Activity implements View.OnClickListener {
     TextView tvRecyclerAll;
     @InjectView(R.id.tv_recycler_delete)
     TextView tvRecyclerDelete;
+    @InjectView(R.id.tv_recycler_other_delete)
+    TextView tvRecyclerOtherDelete;
     private TextView tvRecyclerClick;
 
     @Override
@@ -38,6 +40,7 @@ public class RecyclerActivity extends Activity implements View.OnClickListener {
         tvRecyclerAddMore.setOnClickListener(this);
         tvRecyclerAll.setOnClickListener(this);
         tvRecyclerDelete.setOnClickListener(this);
+        tvRecyclerOtherDelete.setOnClickListener(this);
     }
 
     @Override
@@ -57,10 +60,19 @@ public class RecyclerActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.tv_recycler_delete:
                 toRecyclerDelete();
+                break;
+            case R.id.tv_recycler_other_delete:
+                toRecyclerOtherDelete();
+                break;
             default:
                 break;
 
         }
+    }
+
+    private void toRecyclerOtherDelete() {
+        Intent intent = new Intent(RecyclerActivity.this, DeleteItemRecyclerActivity2.class);
+        startActivity(intent);
     }
 
     /**
