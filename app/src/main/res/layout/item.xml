@@ -5,6 +5,7 @@
     android:paddingLeft="10dip"
     >
     <View
+        android:id="@+id/v"
         android:layout_width="60dip"
         android:layout_height="60dip"
         android:background="#999999"

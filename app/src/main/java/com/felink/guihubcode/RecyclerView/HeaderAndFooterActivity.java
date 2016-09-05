@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
-import com.felink.guihubcode.MainActivity;
+import com.felink.guihubcode.widget.MainActivity;
 import com.felink.guihubcode.R;
 import com.felink.guihubcode.adpter.DataAdapter;
 import com.felink.guihubcode.adpter.HeaderAndFooterWrapper;

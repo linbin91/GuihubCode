@@ -1,1 +1,1 @@
-include ':app', ':marqueelibrary', ':xrecyclerview'
+include ':app', ':marqueelibrary', ':xrecyclerview', ':changetheme', ':AndroidStudyCode-master'

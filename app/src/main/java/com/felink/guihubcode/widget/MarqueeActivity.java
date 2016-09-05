@@ -1,10 +1,11 @@
-package com.felink.guihubcode;
+package com.felink.guihubcode.widget;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.felink.guihubcode.R;
 import com.felink.marqueelibrary.MarqueeLayout;
 import com.felink.marqueelibrary.MarqueeLayoutAdapter;
 

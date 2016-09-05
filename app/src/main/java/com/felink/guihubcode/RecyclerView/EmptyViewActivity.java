@@ -32,7 +32,7 @@ public class EmptyViewActivity extends AppCompatActivity {
 
         //没有数据，触发emptyView
         listData = new  ArrayList<String>();
-        mAdapter = new MyAdapter(listData);
+        mAdapter = new MyAdapter(listData,null);
 
         mRecyclerView.setAdapter(mAdapter);
     }

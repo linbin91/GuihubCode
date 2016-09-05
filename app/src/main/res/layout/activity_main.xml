@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.felink.guihubcode.MainActivity">
+    tools:context=".widget.MainActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -28,6 +28,55 @@
             android:layout_height="40dp"
             android:background="#666666"
             android:text="RecyclerView" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF4081"/>
+        <TextView
+            android:id="@+id/tv_scoller"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#666666"
+            android:text="Scoller" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF4081"/>
+        <TextView
+            android:id="@+id/tv_animation"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#666666"
+            android:text="动画集合" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF4081"/>
+        <TextView
+            android:id="@+id/tv_change_theme"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#666666"
+            android:text="换肤" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF4081"/>
+        <TextView
+            android:id="@+id/tv_recylerview_drag"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#666666"
+            android:text="Recyler拖动，删除" />
     </LinearLayout>
 
 </ScrollView>

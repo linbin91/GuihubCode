@@ -91,7 +91,7 @@ public class GridActivity extends AppCompatActivity {
         for(int i = 0; i < 20 ;i++){
             listData.add("item" + i);
         }
-        mAdapter = new MyAdapter(listData);
+        mAdapter = new MyAdapter(listData,null);
 
         mRecyclerView.setAdapter(mAdapter);
     }
