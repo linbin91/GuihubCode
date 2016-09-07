@@ -31,4 +31,5 @@ dependencies {
     compile project(':xrecyclerview')
     compile project(':changetheme')
     compile project(':recyclerviewcenter')
+    compile project(':utilslibrary')
 }
