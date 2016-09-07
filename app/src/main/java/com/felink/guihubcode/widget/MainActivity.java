@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView tvAnimation;
     @InjectView(R.id.tv_recylerview_drag)
     TextView tvRecylerviewDrag;
+    @InjectView(R.id.tv_recylerview_center)
+    TextView tvRecylerviewCenter;
     private TextView tvMarquee;
     private TextView tvRecyclerView;
     private TextView tvChangeTheme;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvAnimation.setOnClickListener(this);
         tvChangeTheme.setOnClickListener(this);
         tvRecylerviewDrag.setOnClickListener(this);
+        tvRecylerviewCenter.setOnClickListener(this);
     }
 
     private void initView() {
@@ -71,9 +74,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv_recylerview_drag:
                 toRecyclerViewDrag();
                 break;
+            case R.id.tv_recylerview_center:
+                toRecyclerCenter();
             default:
                 break;
         }
+    }
+
+    private void toRecyclerCenter() {
+        Intent intent = new Intent(MainActivity.this,RecyclerViewCentenActivity.class);
+        startActivity(intent);
     }
 
     private void toRecyclerViewDrag() {

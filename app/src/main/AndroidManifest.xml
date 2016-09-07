@@ -44,5 +44,6 @@
         <activity android:name=".widget.BaseAnimation"/>
         <activity android:name="com.linbin.changetheme.DayNightActivity" />
         <activity android:name=".widget.RecyclerViewDrag"/>
+        <activity android:name=".widget.RecyclerViewCentenActivity"/>
     </application>
 </manifest>

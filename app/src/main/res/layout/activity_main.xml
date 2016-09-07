@@ -77,6 +77,18 @@
             android:layout_height="40dp"
             android:background="#666666"
             android:text="Recyler拖动，删除" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF4081"/>
+        <TextView
+            android:id="@+id/tv_recylerview_center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#666666"
+            android:text="Recyler 中间显示" />
     </LinearLayout>
 
 </ScrollView>

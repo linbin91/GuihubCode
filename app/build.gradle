@@ -30,4 +30,5 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.2.0'
     compile project(':xrecyclerview')
     compile project(':changetheme')
+    compile project(':recyclerviewcenter')
 }
